@@ -33,4 +33,4 @@ class TTFInitLayer(base.Layer):
     def __init__(self, app):
         super(TTFInitLayer, self).__init__(app)
         pygame.font.init()
-        self.app.font = pygame.font.Font('assets/FreeSans.ttf', 12)
+        self.app.font = pygame.font.Font(self.app.get_asset('FreeSans.ttf'), 12)

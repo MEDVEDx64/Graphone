@@ -2,19 +2,23 @@ import layers
 import pygame
 import os
 
-from utils import keyboard
+from utils import keyboard, printy
+from system.loader import ContentLoader
 from importlib.machinery import SourceFileLoader
 
 
-class GraphoneApp(object):
+class GraphoneApp(ContentLoader):
     def __init__(self, config, initial_context):
+        printy.info('Initializing')
+        super(GraphoneApp, self).__init__()
+
         self.running = True
         self.clock = pygame.time.Clock()
         self.km = keyboard.KeyboardManager()
 
         self.config = config
         self.context = None
-        self._next_ctx_name = initial_context
+        self.set_context(initial_context)
 
         # Starting pygame and creating screen
         pygame.init()
@@ -59,6 +63,7 @@ class GraphoneApp(object):
 
     def set_context(self, name):
         self._next_ctx_name = name
+        printy.info('Context is set to "' + name + '"')
 
     def cleanup(self):
         pass
